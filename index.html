@@ -557,7 +557,46 @@ footer strong { color: var(--text2); font-weight: 500; }
   transform: translateY(0);
 }
 
-/* DIVIDER */
+.srv-demo-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 1rem;
+  font-size: 12px;
+  color: var(--accent2);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.service-card:hover .srv-demo-btn { opacity: 1; }
+
+/* CHAT DEMO */
+.chat-demo { display:flex; flex-direction:column; gap:10px; margin:1rem 0; }
+.chat-msg { max-width:80%; padding:10px 14px; border-radius:14px; font-size:14px; line-height:1.5; }
+.chat-msg.bot { background:rgba(124,111,255,0.15); color:#c4bdff; border-bottom-left-radius:4px; align-self:flex-start; }
+.chat-msg.user { background:rgba(255,255,255,0.08); color:#e0dff8; border-bottom-right-radius:4px; align-self:flex-end; }
+.chat-input-row { display:flex; gap:8px; margin-top:1rem; }
+.chat-input-row input { flex:1; background:rgba(255,255,255,0.06); border:0.5px solid rgba(255,255,255,0.12); color:#fff; padding:10px 14px; border-radius:10px; font-size:14px; font-family:'DM Sans',sans-serif; outline:none; }
+.chat-input-row input::placeholder { color:rgba(255,255,255,0.3); }
+.chat-input-row button { background:var(--accent); border:none; color:#fff; padding:10px 16px; border-radius:10px; cursor:pointer; font-size:14px; }
+
+/* ATTENDANCE DEMO */
+.att-table { width:100%; border-collapse:collapse; font-size:13px; margin-top:1rem; }
+.att-table th { text-align:left; padding:8px 10px; color:rgba(255,255,255,0.4); font-weight:400; border-bottom:0.5px solid rgba(255,255,255,0.08); }
+.att-table td { padding:10px 10px; border-bottom:0.5px solid rgba(255,255,255,0.05); }
+.badge { display:inline-block; font-size:11px; padding:2px 10px; border-radius:99px; font-weight:500; }
+.badge.green { background:rgba(45,212,160,0.15); color:#2dd4a0; }
+.badge.red { background:rgba(255,107,107,0.15); color:#ff8080; }
+.badge.amber { background:rgba(245,166,35,0.15); color:#f5a623; }
+
+/* CHART DEMO */
+.chart-bars { display:flex; align-items:flex-end; gap:8px; height:120px; margin:1rem 0 0.5rem; }
+.bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+.bar { width:100%; border-radius:6px 6px 0 0; background:var(--accent); transition:height 0.5s ease; }
+.bar-lbl { font-size:11px; color:rgba(255,255,255,0.35); }
+.bar-val { font-size:11px; color:rgba(255,255,255,0.6); }
+
+/* MODAL TITLE */
+.modal-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; letter-spacing:-0.5px; margin-bottom:0.4rem; }
+.modal-sub { font-size:14px; color:rgba(255,255,255,0.45); margin-bottom:1.5rem; line-height:1.6; }
+.modal-icon { width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem; }
 .full-width {
   max-width: 100%;
   border-top: 0.5px solid var(--border);
@@ -704,42 +743,59 @@ footer strong { color: var(--text2); font-weight: 500; }
   <p class="section-label reveal">Xizmatlar</p>
   <h2 class="section-title reveal">Sizning biznesingiz<br>uchun nima qila olamiz</h2>
   <p class="section-sub reveal">
-    Har qanday soha, har qanday hajm — AI yordamida.
+    Har qanday soha, har qanday hajm — AI yordamida. <span style="color:var(--accent2);font-size:13px;">Bosib ko'ring →</span>
   </p>
 
   <div class="services-grid">
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('chatbot')" style="cursor:pointer;">
       <i class="ti ti-robot" aria-hidden="true"></i>
       <h3>AI chatbot va agentlar</h3>
       <p>Mijozlar savollari, ichki ma'lumotlar, qo'llab-quvvatlash — barchasi avtomatik.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('hr')" style="cursor:pointer;">
       <i class="ti ti-users" aria-hidden="true"></i>
       <h3>HR tizimlar</h3>
       <p>Ishga qabul, onboarding, test, davomat — to'liq raqamli HR.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('dashboard')" style="cursor:pointer;">
       <i class="ti ti-chart-bar" aria-hidden="true"></i>
       <h3>Dashboard va analytics</h3>
       <p>Biznes ko'rsatkichlari real vaqtda, chiroyli vizualizatsiya bilan.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('web')" style="cursor:pointer;">
       <i class="ti ti-device-mobile" aria-hidden="true"></i>
       <h3>Veb-sayt va landing</h3>
       <p>Tez, zamonaviy, mobil qurilmalarga moslashgan saytlar.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('auto')" style="cursor:pointer;">
       <i class="ti ti-settings-automation" aria-hidden="true"></i>
       <h3>Jarayonlarni avtomatlashtirish</h3>
       <p>Takroriy ishlarni AI ga topshiring, vaqtingizni muhim ishlarga sarflang.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openModal('strategy')" style="cursor:pointer;">
       <i class="ti ti-bulb" aria-hidden="true"></i>
       <h3>AI strategiya</h3>
       <p>Biznesingizda AI ni qayerdan boshlash kerak — amaliy yo'l xaritasi.</p>
+      <span class="srv-demo-btn">Demo ko'rish <i class="ti ti-arrow-right"></i></span>
     </div>
   </div>
 </section>
+
+<!-- MODAL OVERLAY -->
+<div id="modalOverlay" onclick="closeModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;backdrop-filter:blur(6px);"></div>
+
+<!-- MODAL BOX -->
+<div id="modalBox" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:201;width:min(620px,92vw);max-height:85vh;overflow-y:auto;background:#13131a;border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:2rem;">
+  <button onclick="closeModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.07);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">
+    <i class="ti ti-x"></i>
+  </button>
+  <div id="modalContent"></div>
+</div>
 
 <div class="full-width"></div>
 
@@ -771,39 +827,6 @@ footer strong { color: var(--text2); font-weight: 500; }
       </blockquote>
       <div class="author">
         <strong>Ottimo kompaniyasi</strong> · Toshkent, O'zbekiston
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="full-width"></div>
-
-<!-- HOW IT WORKS -->
-<section id="how">
-  <p class="section-label reveal">Jarayon</p>
-  <h2 class="section-title reveal">Qanday ishlaydi?</h2>
-  <p class="section-sub reveal">Oddiy uch qadam — g'oyadan ishlaydigan tizimgacha.</p>
-
-  <div class="steps-list">
-    <div class="step-item reveal">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>G'oyani aytasiz</h3>
-        <p>Biznesingizda qanday muammo bor — oddiy so'zlar bilan tushuntirasiz. Texnik bilim shart emas.</p>
-      </div>
-    </div>
-    <div class="step-item reveal">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Biz loyihalashtiramiz</h3>
-        <p>AI yordamida eng yaxshi yechimni ishlab chiqamiz — tez, arzon va samarali.</p>
-      </div>
-    </div>
-    <div class="step-item reveal">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Tizim ishlaydi</h3>
-        <p>Tayyor mahsulot internetga chiqariladi. Siz faqat natijani ko'rasiz.</p>
       </div>
     </div>
   </div>
@@ -843,7 +866,7 @@ footer strong { color: var(--text2); font-weight: 500; }
 
 <!-- FOOTER -->
 <footer>
-  <strong>AI UP</strong> · Sun'iy intellekt bilan biznesingizni ko'taring · 2025
+  <strong>AI UP</strong> · Sun'iy intellekt bilan biznesingizni ko'taring · 2026
 </footer>
 
 <script>
@@ -857,6 +880,253 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
+
+// ── MODAL DATA ──
+const modals = {
+  chatbot: {
+    icon: 'ti-robot', iconBg: 'rgba(124,111,255,0.15)', iconColor: '#a89eff',
+    title: 'AI Chatbot — jonli demo',
+    sub: 'Quyida oddiy AI chatbot namunasi. Savolingizni yozing!',
+    render: () => `
+      <div class="chat-demo" id="chatDemo">
+        <div class="chat-msg bot">Salom! Men AI yordamchiman 🤖 Biznesingiz haqida savolingiz bormi?</div>
+      </div>
+      <div class="chat-input-row">
+        <input id="chatIn" placeholder="Savol yozing..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button onclick="sendChat()"><i class="ti ti-send"></i></button>
+      </div>
+    `,
+    init: () => {}
+  },
+  hr: {
+    icon: 'ti-users', iconBg: 'rgba(45,212,160,0.12)', iconColor: '#2dd4a0',
+    title: 'HR tizimi — keldi-ketdi',
+    sub: 'Xodimlar davomat nazorati. Kech qolsa jarima avtomatik.',
+    render: () => `
+      <table class="att-table">
+        <thead><tr><th>Xodim</th><th>Keldi</th><th>Ketdi</th><th>Holat</th></tr></thead>
+        <tbody id="attBody"></tbody>
+      </table>
+      <button onclick="addAttRow()" style="margin-top:1rem;background:rgba(45,212,160,0.12);border:0.5px solid rgba(45,212,160,0.3);color:#2dd4a0;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;">
+        <i class="ti ti-plus"></i> Yangi xodim qo'shish
+      </button>
+    `,
+    init: () => {
+      const rows = [
+        {name:'Alisher T.', keldi:'09:00', ketdi:'18:00', status:'green', lbl:'O\'z vaqtida'},
+        {name:'Malika R.', keldi:'09:25', ketdi:'18:00', status:'amber', lbl:'Kech (+25 min)'},
+        {name:'Jasur M.', keldi:'—', ketdi:'—', status:'red', lbl:'Kelmadi'},
+      ];
+      const body = document.getElementById('attBody');
+      if(!body) return;
+      rows.forEach(r => {
+        body.innerHTML += `<tr><td>${r.name}</td><td>${r.keldi}</td><td>${r.ketdi}</td><td><span class="badge ${r.status}">${r.lbl}</span></td></tr>`;
+      });
+    }
+  },
+  dashboard: {
+    icon: 'ti-chart-bar', iconBg: 'rgba(124,111,255,0.15)', iconColor: '#a89eff',
+    title: 'Dashboard — oylik statistika',
+    sub: 'Biznes ko\'rsatkichlari real vaqtda. Har oyni bosib ko\'ring.',
+    render: () => `
+      <div class="chart-bars" id="chartBars"></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:0.5rem;" id="monthBtns"></div>
+    `,
+    init: () => {
+      const data = {
+        'Yan': [12,18,9,22,15,8], 'Fev': [15,20,11,19,17,10],
+        'Mar': [18,25,14,28,20,13], 'Apr': [22,30,16,32,24,15],
+        'May': [20,28,18,30,22,17], 'Iyun': [25,35,20,38,28,19]
+      };
+      const days = ['Du','Se','Ch','Pa','Ju','Sha'];
+      let active = 'Iyun';
+      function render(month) {
+        const bars = document.getElementById('chartBars');
+        if(!bars) return;
+        const vals = data[month];
+        const max = Math.max(...vals);
+        bars.innerHTML = vals.map((v,i) => `
+          <div class="bar-wrap">
+            <div class="bar-val">${v}</div>
+            <div class="bar" style="height:${(v/max)*100}px;"></div>
+            <div class="bar-lbl">${days[i]}</div>
+          </div>`).join('');
+      }
+      const btnWrap = document.getElementById('monthBtns');
+      if(!btnWrap) return;
+      Object.keys(data).forEach(m => {
+        const b = document.createElement('button');
+        b.textContent = m;
+        b.style.cssText = `background:${m===active?'var(--accent)':'rgba(255,255,255,0.06)'};border:none;color:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;transition:background 0.2s`;
+        b.onclick = () => {
+          active = m;
+          document.querySelectorAll('#monthBtns button').forEach(x => x.style.background='rgba(255,255,255,0.06)');
+          b.style.background='var(--accent)';
+          render(m);
+        };
+        btnWrap.appendChild(b);
+      });
+      render(active);
+    }
+  },
+  web: {
+    icon: 'ti-device-mobile', iconBg: 'rgba(192,132,252,0.12)', iconColor: '#c084fc',
+    title: 'Veb-sayt — bu sahifani ko\'ryapsiz!',
+    sub: 'Hozir ko\'rib turgan sayt — AI UP ning o\'zi AI yordamida yaratilgan. Xuddi shunday sayt sizga ham!',
+    render: () => `
+      <div style="background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.5rem;margin-top:0.5rem;">
+        <div style="display:flex;gap:6px;margin-bottom:1rem;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#ff6b6b;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#f5a623;"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#2dd4a0;"></div>
+          <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:4px;height:10px;margin-left:8px;"></div>
+        </div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:8px;">Landing page namunasi</div>
+        <div style="height:8px;background:rgba(255,255,255,0.08);border-radius:4px;margin-bottom:6px;width:60%;"></div>
+        <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:4px;margin-bottom:6px;width:80%;"></div>
+        <div style="height:8px;background:rgba(255,255,255,0.05);border-radius:4px;margin-bottom:16px;width:40%;"></div>
+        <div style="display:flex;gap:8px;">
+          <div style="height:32px;flex:1;background:rgba(124,111,255,0.3);border-radius:8px;"></div>
+          <div style="height:32px;flex:1;background:rgba(255,255,255,0.06);border-radius:8px;"></div>
+        </div>
+      </div>
+      <div style="margin-top:1rem;font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;">
+        ✅ Responsive dizayn (telefon, planshet, kompyuter)<br>
+        ✅ Tez yuklanadi — Vercel CDN<br>
+        ✅ SEO optimizatsiya<br>
+        ✅ Telegram bot bilan integratsiya
+      </div>
+    `,
+    init: () => {}
+  },
+  auto: {
+    icon: 'ti-settings-automation', iconBg: 'rgba(245,166,35,0.12)', iconColor: '#f5a623',
+    title: 'Avtomatlashtirish — misol',
+    sub: 'Quyida oddiy workflow: har kuni soat 9:00 da hisobot avtomatik yuboriladi.',
+    render: () => `
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:0.5rem;" id="autoFlow">
+        <div class="auto-step" data-i="0" style="opacity:0.3;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;transition:all 0.4s;">
+          <i class="ti ti-clock" style="font-size:18px;color:#f5a623;"></i>
+          <div><div style="font-size:14px;font-weight:500;">Trigger: har kuni 09:00</div><div style="font-size:12px;color:rgba(255,255,255,0.4);">Avtomatik ishga tushadi</div></div>
+        </div>
+        <div class="auto-step" data-i="1" style="opacity:0.3;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;transition:all 0.4s;">
+          <i class="ti ti-database" style="font-size:18px;color:#a89eff;"></i>
+          <div><div style="font-size:14px;font-weight:500;">Ma'lumot olish</div><div style="font-size:12px;color:rgba(255,255,255,0.4);">Kecha kelgan xodimlar ro'yxati</div></div>
+        </div>
+        <div class="auto-step" data-i="2" style="opacity:0.3;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;transition:all 0.4s;">
+          <i class="ti ti-report" style="font-size:18px;color:#2dd4a0;"></i>
+          <div><div style="font-size:14px;font-weight:500;">Hisobot tayyorlash</div><div style="font-size:12px;color:rgba(255,255,255,0.4);">AI formatlab chiqaradi</div></div>
+        </div>
+        <div class="auto-step" data-i="3" style="opacity:0.3;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 16px;transition:all 0.4s;">
+          <i class="ti ti-brand-telegram" style="font-size:18px;color:#a89eff;"></i>
+          <div><div style="font-size:14px;font-weight:500;">Telegram yuborish</div><div style="font-size:12px;color:rgba(255,255,255,0.4);">Menejerga avtomatik SMS</div></div>
+        </div>
+      </div>
+      <button onclick="runAutoDemo()" style="margin-top:1rem;background:rgba(245,166,35,0.12);border:0.5px solid rgba(245,166,35,0.3);color:#f5a623;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;">
+        <i class="ti ti-player-play"></i> Ishga tushirish
+      </button>
+    `,
+    init: () => {}
+  },
+  strategy: {
+    icon: 'ti-bulb', iconBg: 'rgba(245,166,35,0.12)', iconColor: '#f5a623',
+    title: 'AI Strategiya — sizning sohangiz',
+    sub: 'Sohangizni tanlang — AI biznesda qayerdan boshlash kerakligini ko\'rsatadi.',
+    render: () => `
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;" id="sectorBtns">
+        ${['Restoran','Do\'kon','Klinika','Ta\'lim','Logistika','Mehmonxona'].map(s=>`<button onclick="showStrategy('${s}')" style="background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.12);color:#fff;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;transition:background 0.2s;">${s}</button>`).join('')}
+      </div>
+      <div id="strategyResult" style="display:none;background:rgba(124,111,255,0.08);border:0.5px solid rgba(124,111,255,0.2);border-radius:12px;padding:1.25rem;font-size:14px;line-height:1.8;color:rgba(255,255,255,0.8);"></div>
+    `,
+    init: () => {}
+  }
+};
+
+const strategies = {
+  'Restoran': '🍽 <b>Restoran uchun AI yo\'l xaritasi:</b><br>① Telegram bot — buyurtma va bron qabul qilish<br>② AI menyu tavsiyasi — mijoz xohishiga qarab<br>③ Xodimlar davomat tizimi<br>④ Kunlik savdo hisoboti avtomatik',
+  'Do\'kon': '🛒 <b>Do\'kon uchun AI yo\'l xaritasi:</b><br>① AI chatbot — mahsulot qidirish va narx<br>② Ombor nazorat tizimi<br>③ Avtomatik buyurtma (stok tugaganda)<br>④ Mijozlarga SMS xabarnomalar',
+  'Klinika': '🏥 <b>Klinika uchun AI yo\'l xaritasi:</b><br>① Qabulga yozilish boti<br>② Shifokor jadvalini boshqarish<br>③ Bemorga eslatmalar avtomatik<br>④ Hisobotlar va statistika dashboard',
+  'Ta\'lim': '📚 <b>Ta\'lim markazi uchun:</b><br>① O\'quvchi ro\'yxati va davomat<br>② Ota-onaga avtomatik xabar<br>③ Online test tizimi<br>④ AI dars rejasi tavsiyasi',
+  'Logistika': '🚚 <b>Logistika uchun:</b><br>① Buyurtma tracking boti<br>② Haydovchi davomat va yo\'l nazorati<br>③ Avtomatik hujjat tayyorlash<br>④ Mijozga yetkazish SMS',
+  'Mehmonxona': '🏨 <b>Mehmonxona uchun:</b><br>① Xona bron qilish boti<br>② Check-in/out avtomatlashtirish<br>③ Xizmat ko\'rsatish so\'rovlari<br>④ Mehmon fikrlari tahlili'
+};
+
+function showStrategy(sector) {
+  document.querySelectorAll('#sectorBtns button').forEach(b => b.style.background='rgba(255,255,255,0.06)');
+  event.target.style.background='rgba(124,111,255,0.2)';
+  const r = document.getElementById('strategyResult');
+  r.style.display='block';
+  r.innerHTML = strategies[sector] || '';
+}
+
+function runAutoDemo() {
+  const steps = document.querySelectorAll('.auto-step');
+  steps.forEach(s => { s.style.opacity='0.3'; s.style.borderColor='rgba(255,255,255,0.08)'; });
+  steps.forEach((s, i) => {
+    setTimeout(() => {
+      s.style.opacity='1';
+      s.style.borderColor='rgba(245,166,35,0.4)';
+      s.style.background='rgba(245,166,35,0.06)';
+    }, i * 600);
+  });
+}
+
+const chatResponses = {
+  default: ['Zo\'r savol! AIUP bu muammoни AI bilan hal qila oladi 🤖', 'Biznesingiz uchun ideal yechim bor! @Ibr0kh1_M ga yozing 🚀', 'Ha, bu xizmatimiz bor. Narx haqida gaplashaylik 💬', 'Ajoyib! Bunga Telegram bot eng mos keladi 🎯'],
+  salom: ['Salom! Biznesingizda qanday muammo bor? 😊', 'Xush kelibsiz! Nima qilishim mumkin? 🤖'],
+  narx: ['Xizmatlar narxi: Bot — $100, AI Agent — $150, HR tizim — $75 💰', 'Batafsil narx uchun @Ibr0kh1_M ga murojaat qiling!'],
+  bot: ['Telegram bot biznesingiz uchun 24/7 ishlaydi! Buyurtma, qo\'llab-quvvatlash — barchasi avtomatik 🤖'],
+};
+
+let chatCount = 0;
+function sendChat() {
+  const inp = document.getElementById('chatIn');
+  const demo = document.getElementById('chatDemo');
+  if(!inp || !demo || !inp.value.trim()) return;
+  const txt = inp.value.trim();
+  inp.value = '';
+  demo.innerHTML += `<div class="chat-msg user">${txt}</div>`;
+  setTimeout(() => {
+    let key = 'default';
+    const lower = txt.toLowerCase();
+    if(lower.includes('salom') || lower.includes('hi') || lower.includes('hello')) key='salom';
+    else if(lower.includes('narx') || lower.includes('pul') || lower.includes('dollar')) key='narx';
+    else if(lower.includes('bot') || lower.includes('telegram')) key='bot';
+    const arr = chatResponses[key];
+    const reply = arr[chatCount % arr.length];
+    chatCount++;
+    demo.innerHTML += `<div class="chat-msg bot">${reply}</div>`;
+    demo.scrollTop = demo.scrollHeight;
+  }, 600);
+  demo.scrollTop = demo.scrollHeight;
+}
+
+function openModal(key) {
+  const m = modals[key];
+  if(!m) return;
+  const content = document.getElementById('modalContent');
+  content.innerHTML = `
+    <div class="modal-icon" style="background:${m.iconBg};color:${m.iconColor};">
+      <i class="ti ${m.icon}"></i>
+    </div>
+    <div class="modal-title">${m.title}</div>
+    <div class="modal-sub">${m.sub}</div>
+    ${m.render()}
+    <a href="https://t.me/Ibr0kh1_M" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;background:var(--accent);color:#fff;padding:10px 20px;border-radius:10px;text-decoration:none;font-size:14px;font-family:'DM Sans',sans-serif;">
+      <i class="ti ti-brand-telegram"></i> Buyurtma berish
+    </a>
+  `;
+  document.getElementById('modalOverlay').style.display='block';
+  document.getElementById('modalBox').style.display='block';
+  document.body.style.overflow='hidden';
+  setTimeout(() => m.init(), 50);
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').style.display='none';
+  document.getElementById('modalBox').style.display='none';
+  document.body.style.overflow='';
+}
 </script>
 
 </body>
